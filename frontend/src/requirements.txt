@@ -1,0 +1,32 @@
+# ──────────────────────────────────────────────
+# Football Analytics System — requirements.txt
+# ──────────────────────────────────────────────
+
+# Core CV + Detection
+ultralytics>=8.2.0          # YOLOv8 (includes ByteTrack via supervision)
+opencv-python>=4.9.0        # Video I/O + image processing
+
+# Tracking (ByteTrack wrapper — much easier than raw DeepSORT)
+supervision>=0.21.0         # roboflow/supervision includes ByteTracker
+
+# Math + Signal processing
+numpy>=1.26.0
+scipy>=1.13.0               # Savitzky-Golay smoothing for trajectories
+
+# API
+fastapi>=0.111.0
+uvicorn[standard]>=0.29.0
+python-multipart>=0.0.9     # required for file uploads in FastAPI
+
+# Visualization (optional extras)
+matplotlib>=3.8.0           # if you want static plot exports
+Pillow>=10.3.0
+
+# ──────────────────────────────────────────────
+# Install command:
+#   pip install -r requirements.txt
+#
+# NOTE: PyTorch is pulled in automatically by ultralytics.
+# For GPU support, install torch manually first:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+# ──────────────────────────────────────────────
