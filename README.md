@@ -112,3 +112,4 @@ Under `backend/outputs/<job_id>/`:
 
 MIT — YOLOv8 / Ultralytics and third-party weights follow their respective licenses.
 "# Hackwise" 
+"# hackwise2.0" 
