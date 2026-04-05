@@ -44,28 +44,11 @@ export default function ResultsDashboard({ results, jobId, onReset }) {
         </button>
       </div>
 
-      {/* Meta row */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        {[
-          { label: "Frames",   value: meta.total_frames ?? "—",              color: "text-emerald-400" },
-          { label: "FPS",      value: meta.fps ?? "—",                       color: "text-sky-400"     },
-          { label: "Duration", value: meta.duration_s ? `${meta.duration_s}s` : "—", color: "text-violet-400" },
-          { label: "Players",  value: meta.players_tracked ?? "—",           color: "text-yellow-400"  },
-        ].map((m) => (
-          <div key={m.label}
-               className="bg-gray-900 border border-gray-800 rounded-xl p-4 text-center
-                          hover:border-gray-700 transition-colors">
-            <div className={`${m.color} font-bold text-2xl tabular-nums`}>{m.value}</div>
-            <div className="text-gray-600 text-[11px] mt-0.5">{m.label}</div>
-          </div>
-        ))}
-      </div>
-
       {/* Main body */}
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-5">
+      <div className="space-y-5">
 
         {/* Video section */}
-        <div className="xl:col-span-2 space-y-3">
+        <div className="space-y-3">
           {/* Tab bar */}
           <div className="flex gap-1 bg-gray-900 border border-gray-800 rounded-xl p-1">
             {Object.entries(videos).map(([key, v]) => (
@@ -99,15 +82,12 @@ export default function ResultsDashboard({ results, jobId, onReset }) {
                                 py-2 border-t border-gray-800 select-none transition-colors">
               ▶ Compare: Annotated + Eagle View side-by-side
             </summary>
-            <div className="grid grid-cols-2 gap-3 mt-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
               <VideoPlayer src={`${API}${results.annotated_video}`} label="Annotated" />
               <VideoPlayer src={`${API}${results.eagle_video}`}     label="Eagle View" />
             </div>
           </details>
         </div>
-
-        {/* Stats panel */}
-        <StatsPanel statsUrl={results.stats_url} />
       </div>
 
       {/* Downloads */}
@@ -120,7 +100,6 @@ export default function ResultsDashboard({ results, jobId, onReset }) {
             { label: "📹 Annotated",  url: results.annotated_video, fn: "annotated.mp4"   },
             { label: "🦅 Eagle View", url: results.eagle_video,     fn: "eagle_view.mp4"  },
             { label: "📐 Side View",  url: results.side_video,      fn: "side_view.mp4"   },
-            { label: "📊 Stats JSON", url: results.stats_url,       fn: "stats.json"      },
           ].map((d) => (
             <a
               key={d.label}
