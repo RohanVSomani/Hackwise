@@ -41,6 +41,15 @@ export default function VideoPlayer({
     }
   }, [handleTimeUpdate])
 
+  // Force video reload when source changes
+  useEffect(() => {
+    if (videoRef.current && src) {
+      videoRef.current.load()
+      setPlaying(false)
+      setCurrent(0)
+    }
+  }, [src])
+
   // ── Controls ──────────────────────────────────────────────────────────────
   const togglePlay = () => {
     const v = videoRef.current
